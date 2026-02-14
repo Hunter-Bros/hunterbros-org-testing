@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head><title>Echo</title></head>
+<body>
+  <h1>Echo Service</h1>
+  <form id="echoForm">
+    <label for="message">Type something:</label><br>
+    <input type="text" id="message" name="message" required>
+    <button type="submit">Send to Serverless Function</button>
+  </form>
+
+  <div id="response" style="margin-top: 20px; font-weight: bold;"></div>
+
+  <script>
+    document.getElementById('echoForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const message = document.getElementById('message').value;
+
+      // This calls your Python function
+      const res = await fetch('/api/echo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: message })
+      });
+
+      const data = await res.json();
+      document.getElementById('response').textContent = 
+        'Server responded: ' + data.echo;
+    });
+  </script>
+
+  <a href="/">Home</a>
+</body>
+</html>
+
