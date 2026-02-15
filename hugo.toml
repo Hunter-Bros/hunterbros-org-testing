@@ -2,3 +2,8 @@ baseURL = 'https://hunterbros.org/'
 languageCode = 'en-us'
 title = 'Hunter Bros.'
 theme = 'ananke'
+
+[[menus.main]]
+  name = "Echo"
+  url = "/echo/"
+  weight = 99
